@@ -3,7 +3,7 @@ function send_email(){
   var email = document.getElementById('email').value;
   var subject = document.getElementById('subject').value;
   var message = document.getElementById('message').value;
-  var url = "http://api.vijanatech.com/email_api?name="+name+"&email="+email+"&subject="+subject+"&message="+message;
+  var url = "https://api.vijanatech.com/email_api?name="+name+"&email="+email+"&subject="+subject+"&message="+message;
   fetch(url,{mode:'cors',credentials:'same-origin'})
   .then(response => console.log(response.json()))
   .then(data => console.log(data));
