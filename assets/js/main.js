@@ -5,7 +5,14 @@ function send_email(){
   var message = document.getElementById('message').value;
   var url = "https://api.vijanatech.com/email_api?name="+name+"&email="+email+"&subject="+subject+"&message="+message;
   fetch(url,{mode:'no-cors',credentials:'same-origin','Accept': 'application/json'})
-  .then(response => JSON.parse(response.json()))
+  .then(response => {
+    if(response){
+      try{
+        response.json();
+      }catch(e){
+        alert(e);
+      }
+    });
   .then(data => console.log(data));
   
 }
