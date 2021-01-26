@@ -10,6 +10,7 @@ function send_email(){
   .then(data => console.log(data));
   
 }
+
 !(function($) {
 "use strict";
 // Preloader
