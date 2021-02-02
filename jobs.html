@@ -141,7 +141,7 @@
 
     <div class="col-lg-5 col-md-8" data-aos="fade-up" data-aos-delay="200">
                                   <div class="form">
-                                    <form method="post" role="form" class="php-email-form">
+                                    <form method="post" role="form" class="php-email-form" id="contact-form">
                                       <div class="form-row">
                                         <div class="form-group col-lg-6">
                                           <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -214,20 +214,26 @@
                               <!-- Template Main JS File -->
                               <script src="assets/js/main.js"></script>
                               <script>
-                              var name = document.getElementById('name').value;
-                              var email = document.getElementById('email').value;
-                              var subject = document.getElementById('subject').value;
-                              var message = document.getElementById('message').value;
-                              var url = "https://api.vijanatech.com/email_api?name="+name+"&email="+email+"&subject="+subject+"&message="+message;
-                              
-                              $("button").click(function(){
-                              $.getJSON(url,function(data){
-                                if(data[1])
-                                alert("email_sent");
-                                else
-                                alert("email_not_sent");
-                              })
-                              })
+                                $("#return").html("");
+                                $("#contact-form").submit(function(event){
+                                  
+                                 // event.preventDefault();
+                                  var name = $("#name").val();
+                                  var email = $("#email").val();
+                                  var subject = $("#subject").val();
+                                  var message = $("#message").val();
+                                  var url = "https://api.vijanatech.com/email_api?name="+name+"&email="+email+"&subject="+subject+"&message="+message;
+                                  if(email!="")
+                                    $.getJSON(url,function(data){
+                                      console.log(data);
+                                    if(data[1]==="email_sent")
+                                      $("#return").html("email_sent");
+                                    else
+                                      $("#return").html("email_not_sent");
+                                    })
+                                  else
+                                      $("#return").html("field not yet");
+                                })
                               </script>
                             </body>
                           </html>
